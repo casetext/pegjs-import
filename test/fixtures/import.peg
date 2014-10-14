@@ -1,0 +1,7 @@
+
+@import "./dep.peg"
+@import "./deps/dep2" as somethingElse
+
+start
+  = dep "."
+  / dep

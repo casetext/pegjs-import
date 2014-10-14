@@ -1,0 +1,10 @@
+{
+  if (this.executed) {
+    error('Initializer was wrongly executed twice');
+  } else {
+    this.executed = true;
+  }
+}
+
+initializerTest
+  = [0-9]+

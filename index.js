@@ -1,0 +1,86 @@
+
+'use strict';
+
+var fs = require('fs'),
+  path = require('path'),
+  peg = require('pegjs'),
+  importPlugin = require('./lib/compiler-plugin'),
+  parseImports = require('./lib/parse-imports');
+
+var parsers = {};
+
+module.exports = function buildParser(filename, options) {
+
+  // if we've already imported this file, don't touch it again
+  if (parsers[filename]) {
+    return parsers[filename];
+  }
+
+  var absoluteFilename = path.resolve(filename);
+  var grammar = parseImports(absoluteFilename);
+
+  // recursively build the files we discovered
+  grammar.dependencies.forEach(function(dependency) {
+
+    // convert path to absolute
+    if (dependency.path.charAt(0) === '.') {
+
+      var prospectivePath = path.resolve(
+        path.dirname(filename),
+        dependency.path);
+
+      if (fs.existsSync(prospectivePath)) {
+        dependency.path = prospectivePath;
+      } else {
+        dependency.path = require.resolve(dependency.path);
+      }
+
+    } else {
+      dependency.path = require.resolve(dependency.path);
+    }
+
+    var parser;
+    try {
+      parser = buildParser(dependency.path, options);
+    } catch(e) {
+      if (e instanceof peg.GrammarError) {
+        throw new peg.GrammarError(dependency.path + ': ' + e.message + '\n');
+      } else {
+        throw e;
+      }
+    }
+
+  });
+
+  // call out to PEG and build the parser
+
+  var combinedOptions = Object.keys(options || {})
+  .reduce(function(o, k) { o[k] = options[k]; }, {});
+
+  if (combinedOptions.plugins) {
+    combinedOptions.plugins = combinedOptions.plugins.concat(importPlugin);
+  } else {
+    combinedOptions.plugins = [importPlugin];
+  }
+
+  combinedOptions.filename = absoluteFilename;
+  combinedOptions.dependencies = grammar.dependencies;
+
+  var newParser;
+
+  try {
+    newParser = peg.buildParser(grammar.text, combinedOptions);
+  } catch(e) {
+
+    if (e instanceof peg.GrammarError) {
+      throw new peg.GrammarError(absoluteFilename + ': ' + e.message + '\n');
+    } else {
+      throw e;
+    }
+
+  }
+
+  parsers[absoluteFilename] = newParser;
+  return newParser;
+
+};

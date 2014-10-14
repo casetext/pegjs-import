@@ -1,0 +1,5 @@
+
+@import "./deps/dep2"
+
+foo
+  = dep2
