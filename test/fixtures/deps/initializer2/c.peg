@@ -1,0 +1,7 @@
+
+{
+  this.things.push('c');
+}
+
+foo
+  = [A-Z]+

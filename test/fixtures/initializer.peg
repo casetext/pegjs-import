@@ -1,5 +1,5 @@
 
-@import "./deps/initializer-test.peg"
+@import "./deps/initializer-test"
 
 foo
   = "bar"

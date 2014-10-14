@@ -1,0 +1,9 @@
+
+@import "./c"
+
+{
+  this.things.push('b');
+}
+
+bar
+  = [0-9]+

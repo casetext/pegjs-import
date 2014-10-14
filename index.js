@@ -7,7 +7,8 @@ var fs = require('fs'),
   importPlugin = require('./lib/compiler-plugin'),
   parseImports = require('./lib/parse-imports');
 
-var parsers = {};
+var parsers = {},
+  importStack = [];
 
 module.exports = function buildParser(filename, options) {
 
@@ -16,8 +17,14 @@ module.exports = function buildParser(filename, options) {
     return parsers[filename];
   }
 
-  var absoluteFilename = path.resolve(filename);
-  var grammar = parseImports(absoluteFilename);
+  var absoluteFilename = path.resolve(filename),
+    grammar = parseImports(absoluteFilename);
+
+  if (importStack.indexOf(absoluteFilename) !== -1) {
+    throw new peg.GrammarError('Circular dependency on ' + absoluteFilename);
+  } else {
+    importStack.push(absoluteFilename);
+  }
 
   // recursively build the files we discovered
   grammar.dependencies.forEach(function(dependency) {
@@ -79,6 +86,9 @@ module.exports = function buildParser(filename, options) {
     }
 
   }
+
+  // pop ourselves off the import stack
+  importStack.pop();
 
   parsers[absoluteFilename] = newParser;
   return newParser;

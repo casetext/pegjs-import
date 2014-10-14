@@ -1,0 +1,5 @@
+
+@import "./left"
+
+right
+  = left

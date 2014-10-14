@@ -1,0 +1,23 @@
+
+@import "./deps/initializer2/a"
+@import "./deps/initializer2/b"
+@import "./deps/initializer2/c"
+
+{
+
+  if (this.things.length !== 3) {
+    error('In initializer2.peg, there should be three things');
+  }
+
+  if (
+    this.things[0] !== 'a' ||
+    this.things[1] !== 'c' ||
+    this.things[2] !== 'b'
+  ) {
+    error('Wrong order of things in initializer2.peg, got ' + this.things);
+  }
+
+}
+
+foo
+  = [A-Z]
