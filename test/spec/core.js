@@ -58,4 +58,12 @@ describe('peg-import', function() {
 
   });
 
+  it('treats internal rule name references correctly', function() {
+
+    expect(function() {
+      pegimport.buildParser('test/fixtures/rulerefs.peg');
+    }).not.to.throw();
+
+  });
+
 });
