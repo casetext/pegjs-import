@@ -50,4 +50,12 @@ describe('peg-import', function() {
 
   });
 
+  it('passes options straight through', function() {
+
+    expect(function() {
+      pegimport.buildParser('test/fixtures/initializer.peg', { optimize: 'size' });
+    }).not.to.throw();
+
+  });
+
 });

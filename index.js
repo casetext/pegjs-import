@@ -61,8 +61,14 @@ function buildParser(filename, options) {
 
   // call out to PEG and build the parser
 
-  var combinedOptions = Object.keys(options || {})
-  .reduce(function(o, k) { o[k] = options[k]; }, {});
+  var combinedOptions = {};
+  for (var option in options) {
+
+    if (options.hasOwnProperty(option)) {
+      combinedOptions[option] = options[option];
+    }
+
+  }
 
   if (combinedOptions.plugins) {
     combinedOptions.plugins = combinedOptions.plugins.concat(importPlugin);
