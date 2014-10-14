@@ -55,6 +55,10 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 
 ## Changelog
 
+### 0.2.2
+
+- Make sure we treat internal vs. external rule_refs correctly
+
 ### 0.2.1
 
 - Fixed bug in options parsing.

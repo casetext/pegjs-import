@@ -1,6 +1,6 @@
 {
   "name": "pegjs-import",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Import other PEG files into a PEG.js grammar.",
   "main": "index.js",
   "scripts": {
