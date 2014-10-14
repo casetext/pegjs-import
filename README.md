@@ -55,6 +55,10 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 
 ## Changelog
 
+### 0.2.1
+
+- Fixed bug in options parsing.
+
 ### 0.2.0
 
 - Changed syntax to more closely correspond to that of PEG.js.
