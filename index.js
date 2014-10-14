@@ -10,7 +10,7 @@ var fs = require('fs'),
 var parsers = {},
   importStack = [];
 
-module.exports = function buildParser(filename, options) {
+function buildParser(filename, options) {
 
   // if we've already imported this file, don't touch it again
   if (parsers[filename]) {
@@ -94,3 +94,4 @@ module.exports = function buildParser(filename, options) {
   return newParser;
 
 };
+module.exports = { buildParser: buildParser };

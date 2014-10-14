@@ -1,7 +1,7 @@
 
 'use strict';
 
-var buildParser = require('../../index'),
+var pegimport = require('../../index'),
   peg = require('pegjs');
 
 describe('peg-import', function() {
@@ -10,7 +10,7 @@ describe('peg-import', function() {
 
     var parser;
 
-    parser = buildParser('test/fixtures/import.peg');
+    parser = pegimport.buildParser('test/fixtures/import.peg');
 
     expect(function() {
       parser.parse('0123456789');
@@ -29,7 +29,7 @@ describe('peg-import', function() {
   it('only imports initializers once', function() {
 
     expect(function() {
-      buildParser('test/fixtures/initializer.peg');
+      pegimport.buildParser('test/fixtures/initializer.peg');
     }).not.to.throw();
 
   });
@@ -37,7 +37,7 @@ describe('peg-import', function() {
   it('imports initializers in the correct order', function() {
 
     expect(function() {
-      buildParser('test/fixtures/initializer2.peg');
+      pegimport.buildParser('test/fixtures/initializer2.peg');
     }).not.to.throw();
 
   });
@@ -45,7 +45,7 @@ describe('peg-import', function() {
   it('detects circular dependencies', function() {
 
     expect(function() {
-      buildParser('test/fixtures/circle/left.peg');
+      pegimport.buildParser('test/fixtures/circle/left.peg');
     }).to.throw(peg.GrammarError);
 
   });

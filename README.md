@@ -15,9 +15,9 @@ npm install --save pegjs pegjs-import
 pegjs-import provides a single function that replaces ```peg.buildParser```:
 
 ```javascript
-  var buildParser = require('pegjs-import');
+  var pegimport = require('pegjs-import');
 
-  var parser = buildParser('path/to/grammar.peg', options);
+  var parser = pegimport.buildParser('path/to/grammar.peg', options);
   parser.parse('foo');
 ```
 
@@ -52,3 +52,9 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 - pegjs-import is only tested on NodeJS, though the parsers work everywhere they usually do.
 - Circular dependencies explicitly throw an exception. Don't use them.
 - Please don't do funny things with rule names, pegjs-import will probably explode. I will not be held responsible for exploding grammars.
+
+## Changelog
+
+### 0.2.0
+
+- Changed syntax to more closely correspond to that of PEG.js.
