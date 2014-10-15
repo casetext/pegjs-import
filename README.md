@@ -55,6 +55,10 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 
 ## Changelog
 
+### 0.2.5
+
+- parse-imports now handles /index.peg correctly.
+
 ### 0.2.4
 
 - Resolve a glitch in external rule name resolution.
