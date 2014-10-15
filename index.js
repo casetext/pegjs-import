@@ -36,10 +36,12 @@ function buildParser(filename, options) {
         path.dirname(filename),
         dependency.path);
 
-      if (fs.existsSync(prospectivePath)) {
+      if (fs.existsSync(prospectivePath + '/index.peg')) {
+        dependency.path = prospectivePath + '/index.peg';
+      } else if (fs.existsSync(prospectivePath + '.peg')) {
+        dependency.path = prospectivePath + '.peg';
+      } else if (fs.existsSync(prospectivePath)) {
         dependency.path = prospectivePath;
-      } else {
-        dependency.path = require.resolve(dependency.path);
       }
 
     } else {
