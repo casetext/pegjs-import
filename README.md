@@ -55,6 +55,10 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 
 ## Changelog
 
+### 0.2.4
+
+- Resolve a glitch in external rule name resolution.
+
 ### 0.2.3
 
 - Don't require "as" identifiers to have two characters in them
