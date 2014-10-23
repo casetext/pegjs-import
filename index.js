@@ -36,8 +36,8 @@ function buildParser(filename, options) {
         path.dirname(filename),
         dependency.path);
 
-      if (fs.existsSync(prospectivePath + '/index.peg')) {
-        dependency.path = prospectivePath + '/index.peg';
+      if (fs.existsSync(path.join(prospectivePath, 'index.peg'))) {
+        dependency.path = path.join(prospectivePath, 'index.peg');
       } else if (fs.existsSync(prospectivePath + '.peg')) {
         dependency.path = prospectivePath + '.peg';
       } else if (fs.existsSync(prospectivePath)) {
