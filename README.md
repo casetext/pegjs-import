@@ -55,6 +55,10 @@ When you ```@import``` another grammar, that grammar's topmost rule becomes acce
 
 ## Changelog
 
+### 0.2.6
+
+ - Fixed a bug in path comparison that broke Windows.
+
 ### 0.2.5
 
 - parse-imports now handles /index.peg correctly.
