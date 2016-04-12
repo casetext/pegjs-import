@@ -102,4 +102,9 @@ function buildParser(filename, options) {
   return newParser;
 
 };
-module.exports = { buildParser: buildParser };
+
+function clearCache() {
+  parsers = {};
+}
+
+module.exports = { buildParser: buildParser, clearCache: clearCache };
