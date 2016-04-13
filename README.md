@@ -38,9 +38,17 @@ start
   = grammar
 ```
 
-When you ```@import``` another grammar, that grammar's topmost rule becomes accessible in the context of the current grammar under one of two possible rule names: 
+When you ```@import``` another grammar, that grammar's topmost rule becomes accessible in the context of the current grammar under one of two possible rule names:
    - A name you provide explicitly through the use of the optional "as" parameter
    - The basename of the file, corrected to be a valid Javascript identifier (so if the file were called /foo/bar/my-grammar.peg, the rule name would be my_grammar).
+
+pegjs-import will cache rules it has parsed.  You can clear this local cache by calling `clearCache`:
+```javascript
+  var pegimport = require('pegjs-import');
+
+  pegimport.clearCache();
+```
+
 
 ## Changes from stock PEG.js behavior
 
