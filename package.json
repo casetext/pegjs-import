@@ -1,6 +1,6 @@
 {
   "name": "pegjs-import",
-  "version": "0.2.7",
+  "version": "1.2.7",
   "description": "Import other PEG files into a PEG.js grammar.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "author": "Harry Schmidt",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "http://github.com/casetext/pegjs-import.git"
+    "type": "git",
+    "url": "http://github.com/casetext/pegjs-import.git"
   }
 }
