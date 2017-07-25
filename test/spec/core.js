@@ -10,7 +10,7 @@ describe('peg-import', function() {
 
     var parser;
 
-    parser = pegimport.buildParser('test/fixtures/import.peg');
+    parser = pegimport.generate('test/fixtures/import.peg');
 
     expect(function() {
       parser.parse('0123456789');
@@ -29,7 +29,7 @@ describe('peg-import', function() {
   it('only imports initializers once', function() {
 
     expect(function() {
-      pegimport.buildParser('test/fixtures/initializer.peg');
+      pegimport.generate('test/fixtures/initializer.peg');
     }).not.to.throw();
 
   });
@@ -37,7 +37,7 @@ describe('peg-import', function() {
   it('imports initializers in the correct order', function() {
 
     expect(function() {
-      pegimport.buildParser('test/fixtures/initializer2.peg');
+      pegimport.generate('test/fixtures/initializer2.peg');
     }).not.to.throw();
 
   });
@@ -45,7 +45,7 @@ describe('peg-import', function() {
   it('detects circular dependencies', function() {
 
     expect(function() {
-      pegimport.buildParser('test/fixtures/circle/left.peg');
+      pegimport.generate('test/fixtures/circle/left.peg');
     }).to.throw(peg.GrammarError);
 
   });
@@ -53,7 +53,7 @@ describe('peg-import', function() {
   it('passes options straight through', function() {
 
     expect(function() {
-      pegimport.buildParser('test/fixtures/initializer.peg', { optimize: 'size' });
+      pegimport.generate('test/fixtures/initializer.peg', { optimize: 'size' });
     }).not.to.throw();
 
   });
@@ -61,7 +61,7 @@ describe('peg-import', function() {
   it('treats internal rule name references correctly', function() {
 
     expect(function() {
-      pegimport.buildParser('test/fixtures/rulerefs.peg');
+      pegimport.generate('test/fixtures/rulerefs.peg');
     }).not.to.throw();
 
   });
