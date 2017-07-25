@@ -10,7 +10,7 @@ var fs = require('fs'),
 var parsers = {},
   importStack = [];
 
-function buildParser(filename, options) {
+function generate(filename, options) {
 
   // if we've already imported this file, don't touch it again
   if (parsers[filename]) {
@@ -50,7 +50,7 @@ function buildParser(filename, options) {
 
     var parser;
     try {
-      parser = buildParser(dependency.path, options);
+      parser = generate(dependency.path, options);
     } catch(e) {
       if (e instanceof peg.GrammarError) {
         throw new peg.GrammarError(dependency.path + ': ' + e.message + '\n');
@@ -102,4 +102,4 @@ function buildParser(filename, options) {
   return newParser;
 
 };
-module.exports = { buildParser: buildParser };
+module.exports = { generate };
