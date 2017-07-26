@@ -84,7 +84,7 @@ function buildParser(filename, options) {
   var newParser;
 
   try {
-    newParser = peg.buildParser(grammar.text, combinedOptions);
+    newParser = peg.generate(grammar.text, combinedOptions);
   } catch(e) {
 
     if (e instanceof peg.GrammarError) {
