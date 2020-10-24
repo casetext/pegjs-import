@@ -12,12 +12,12 @@ npm install --save pegjs pegjs-import
 
 ## Usage
 
-pegjs-import provides a single function that replaces ```peg.buildParser```:
+pegjs-import provides a single function that replaces ```peg.generate```:
 
 ```javascript
   var pegimport = require('pegjs-import');
 
-  var parser = pegimport.buildParser('path/to/grammar.peg', options);
+  var parser = pegimport.generate('path/to/grammar.peg', options);
   parser.parse('foo');
 ```
 
