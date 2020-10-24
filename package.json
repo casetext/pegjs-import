@@ -4,7 +4,7 @@
   "description": "Import other PEG files into a PEG.js grammar.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r test/setup test/spec/**/*.js"
+    "test": "mocha test/spec/**/*.js"
   },
   "keywords": [
     "pegjs",
@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "chai": "^1.9.2",
-    "mocha": "^1.21.5"
+    "mocha": "^8.2.0"
   },
   "author": "Harry Schmidt",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "http://github.com/casetext/pegjs-import.git"
+    "type": "git",
+    "url": "http://github.com/casetext/pegjs-import.git"
   }
 }

@@ -2,7 +2,8 @@
 'use strict';
 
 var pegimport = require('../../index'),
-  peg = require('pegjs');
+  peg = require('pegjs'),
+  expect = require('chai').expect;
 
 describe('peg-import', function() {
 
